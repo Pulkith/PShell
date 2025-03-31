@@ -1,7 +1,7 @@
 # PShell
 
 
-##  ource Files:
+##  Source Files:
 
 *   `exec.c`
 *   `exec.h`
