@@ -1,34 +1,31 @@
-# 25sp-cis5480-tanaytan-pulkith-prj1
+# PShell
 
-**Names:** Pulkith Paruchuri, Tanay Tandon
 
-**Pennkeys:** pulkith, tanaytan
-
-## Submitted Source Files:
+##  ource Files:
 
 *   `exec.c`
 *   `exec.h`
 *   `jobs.c`
 *   `jobs.h`
-*   `panic.c` (from penn-vec)
-*   `panic.h` (from penn-vec)
-*   `Vec.c` (from penn-vec)
-*   `Vec.h` (from penn-vec)
-*   `parser.c` (already given)
-*   `parser.h`  (already given)
-*   `Job.h`  (already given)
+*   `panic.c` 
+*   `panic.h` 
+*   `Vec.c` 
+*   `Vec.h` 
+*   `parser.c`
+*   `parser.h`
+*   `Job.h`  
 *   `penn-shell.c` (main entry point)
-*   `Makefile`  (already given)
+*   `Makefile`  
 
 ## Overview of Work Accomplished:
-This code represents the completion of al the code for `penn-shell`. The core functionality includes the following:
+This code represents the completion of all the code for `pshell`. The core functionality includes the following:
 
 *   **Pipelines:** The shell allows executing pipelines (of commands), connecting the standard input of one command to the standard output of the next. We made sure that parallel execution 
 was used of the stages by forking all of the processes before waiting for competion.
 *   **Input / Output Redirection:**  Basic input redirection (`<`) and output redirection (`>` and `>>`) are implemented, allowing commands to read from files and write to files as intended.
 *   **Process Groups:** Each pipeline (job) is placed in its own process group, which is different from the shell's process group and other job groups.
 *   **Non-Interactive Mode:** The shell can run in non-interactive mode (e.g., when commands are piped in from a file). In this mode, the shell does not prompt the user and simply executes the commands in sequence.
-*   **Job Control**: In interactive mode, penn-shell supports both foreground and background jobs. Background jobs are indicated by a trailing & and the shell immediately re-prompts after starting them. Job control builtins (jobs, fg, bg) allow the user to view, resume, or foreground stopped/background jobs.
+*   **Job Control**: In interactive mode, pshell supports both foreground and background jobs. Background jobs are indicated by a trailing & and the shell immediately re-prompts after starting them. Job control builtins (jobs, fg, bg) allow the user to view, resume, or foreground stopped/background jobs.
 The shell maintains a job queue (implemented using our Penn-Vec data structure), assigns unique job ids (starting at 1), and prints status messages when a job status changes.
 *   **Terminal Control & Signals**: Using tcsetpgrp(3), the shell delegates terminal control to the foreground job. This allows correct handling of signals like SIGINT (Ctrl-C) and SIGTSTP (Ctrl-Z). The shell itself installs custom handlers for these signals so that it never terminates or stops unexpectedly.
 * **Extra Credit**: We implemented asynchronous zombie reaping by registering a SIGCHLD handler that calls waitpid with WNOHANG to reap child processes immediately when they change state. Finished job notifications are printed immediately. This is not fully working properly when a task is killed, but most of the other functionality works.
@@ -47,7 +44,3 @@ Below is the organization:
 *   **`Makefile`:**  Given, makes the executable.
 
 We tried to keep the code modular, so we can build on it in the future. We also tried our best for good commenting practices.
-
-## General Comments and Grading Notes:
-
-Nothing really much here. We followed most of the implementation details from class and the assignment, and did some testing, especially using the example commands in the writeup. 
